@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=0" />
+	<title>mx5-touch-move</title>
+	<style>
+		* {
+			padding: 0;
+			margin: 0;
+		}
+		.container {
+			width: 200px;
+			height: 150px;
+			border: 1px solid #ccc;
+			position: relative;
+			margin: 50px;
+			overflow: hidden;
+			box-sizing: border-box;
+			padding: 0 20px;
+		}
+		.scroll-area {
+			width: 100%;
+			height: 300px;
+			background-color: #333;
+			font-size: 20px;
+			color: #fff;
+			line-height: 300px;
+			text-align: center;
+			-webkit-transform: translate3d(0, -20px, 0);
+			   -moz-transform: translate3d(0, -20px, 0);
+			    -ms-transform: translate3d(0, -20px, 0);
+			     -o-transform: translate3d(0, -20px, 0);
+			        transform: translate3d(0, -20px, 0);
+			-webkit-transition: transform .1s ease-out;
+			   -moz-transition: transform .1s ease-out;
+			    -ms-transition: transform .1s ease-out;
+			     -o-transition: transform .1s ease-out;
+			        transition: transform .1s ease-out;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="scrollArea" class="scroll-area">
+			scroller
+		</div>
+	</div>
+	<script>
+		var scroll = document.querySelector("#scrollArea"),
+			moving = false,
+			start = {
+				x : 0,
+				y : -20
+			},
+			delta = {
+				x : 0, 
+				y : -20
+			},
+			end = {
+				x : 0,
+				y : -20
+			};
+
+		scroll.addEventListener("touchstart", onStart, false);
+		scroll.addEventListener("touchmove", onMove, false);
+		scroll.addEventListener("touchend", onEnd, false);
+
+		function getPosition(e) {
+			var touch = e.touches[0];
+			return {
+				x : touch.pageX,
+				y : touch.pageY
+			};
+		}
+
+		function onScroll(transformY) {
+			if (transformY > 0) {
+				transformY = 0;
+				delta.y = 0;
+			}
+
+			if (transformY < -150) {
+				transformY = -150;
+				delta.y = -150;
+			}
+
+			var style = scroll.style;
+			style.WebkitTransform = "translate3d(0, "+ transformY +"px, 0)";
+			style.transform = "translate3d(0, "+ transformY +"px, 0)";
+		}
+
+		function onStart(e) {
+			moving = true;
+
+			var point = getPosition(e);
+			start = point;
+			end = point;
+		}
+
+		function onMove(e) {
+
+			if (moving) {
+
+				var point = getPosition(e), deltaX, deltaY, absX, absY;
+				deltaX = point.x - start.x;
+				deltaY = point.y - start.y;
+				
+				absX = Math.abs(deltaX);
+				absY = Math.abs(deltaY);
+
+				end.x += deltaX;
+				end.y += deltaY;
+
+				delta.x += deltaX;
+				delta.y += deltaY;
+
+				console.log("delta y", delta.y);
+
+				if (absY > absX) {
+					onScroll(delta.y);
+				}
+
+				start = end;
+			}
+		}
+
+		function onEnd(e) {
+			if (!moving) {
+				return false;
+			}
+
+			moving = false;
+		}
+	</script>
+</body>
+</html>
