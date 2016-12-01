@@ -1,0 +1,136 @@
+/*时间设置组件*/
+.timeSelect{
+    width:100%;
+    height:100%;
+    position: fixed;
+    top:0;
+    left:0;
+    -webkit-transition:all 0.5s linear;
+    -moz-transition:all 0.5s linear;
+    -ms-transition:all 0.5s linear;
+    -o-transition:all 0.5s linear;
+    transition:all 0.5s linear;
+    z-index: 999;
+}
+.timeSelect-down{}
+.timeSelect-up{}
+
+.timeSelect>section:first-child{
+    background:rgba(0, 0, 0, 0.3);
+    position: fixed;
+    bottom: 22.22rem;
+    width: 100%;
+    height: 100%;
+}
+.timeselect{
+    height:22.22rem;
+    width:100%;
+    position: fixed;
+    bottom:0;
+    left:0;
+    z-index:999;
+    background-color:#ffffff;
+}
+.timeselect>.selecttitle{
+    height:3.75rem;
+    line-height:3.75rem;
+    border-bottom:1px solid #cccccc;
+    border-top:1px solid #cccccc;
+}
+.timeselect>.selecttitle>.title{
+    margin-left:1.25rem;
+    font-size:16px;
+    color:#666666;
+}
+.timeselect>.time{
+    height:14.67rem;
+    position: relative;
+    overflow:hidden !important;
+}
+.timeselect>.time>section.hour,.timeselect>.time>section.minute{
+    display:inline-block;
+    height:100%;
+    z-index:5;
+    opacity:0;
+    position: absolute;
+}
+.timeselect>.time>section.hour{
+    left:0%;
+}
+.timeselect>.time>section.minute{
+    left:50%;
+}
+.timeselect>.time>.timetext{
+    position: absolute;
+    top:50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    line-height:3.75rem;
+    height:3.75rem;
+    width:100%;
+    border-bottom:1px solid #cccccc;
+    border-top:1px solid #cccccc;
+    box-sizing:border-box;
+}
+.timeselect>.time>.timetext>.hour{
+    position: absolute;
+    left:33%;
+    color:#666666;
+    font-size:14px;
+}
+.timeselect>.time>.timetext>.minute{
+    position:absolute;
+    left:66%;
+    color:#666666;
+    font-size:14px;
+}
+.timeselect>.time>.timetext>.status{
+    position: absolute;
+    right:10%;
+    color:#666666;
+    font-size:14px;
+}
+.timeselect>.time>.hourvalue,.timeselect>.time>.minutevalue{
+    width:1.67rem;
+    font-size:18px;
+    color:#323232;
+    position: absolute;
+    z-index: 4;
+    text-align:center;
+    margin-top:-2.73rem;
+}
+.timeselect>.time>.hourvalue{
+   left:25%;
+}
+.timeselect>.time>.minutevalue{
+   left:56%;
+}
+.timeselect>.time>.hourvalue>span,.timeselect>.time>.minutevalue>span{
+    line-height:2.73rem;
+    height:2.73rem;
+    display:block;
+}
+.timeselect>.time>.hourvalue>.line1,.timeselect>.time>.minutevalue>.line1{
+    opacity:0.2;
+}
+.timeselect>.time>.hourvalue>.line2,.timeselect>.time>.minutevalue>.line2{
+    opacity:0.5;
+}
+.timeselect>.time>.hourvalue>.line3,.timeselect>.time>.minutevalue>.line3{
+    line-height:3.75rem;
+    height:3.75rem;
+}
+.timeselect>.time>.hourvalue>.line4,.timeselect>.time>.minutevalue>.line4{
+    opacity:0;
+}
+.timeselect>.selectbtn{
+    height:3.75rem;
+    line-height:3.75rem;
+    font-size:16px;
+    color:#666666;
+    text-align:center;
+    border-top:1px solid #cccccc;
+}
+.timeselect>.selectbtn>span:nth-child(1){
+    border-right:1px solid #cccccc;
+}
